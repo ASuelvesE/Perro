@@ -30,8 +30,8 @@ public class Cliente {
 		/////////////////////////////// SERVIDOR/////////////////////////////
 
 		try {
-//	        mSocket = IO.socket("https://servidorclaseperro.herokuapp.com/");
-			mSocket = IO.socket("http://127.0.0.1:3000/");
+	        mSocket = IO.socket("https://servidorclaseperro.herokuapp.com/");
+//			mSocket = IO.socket("http://127.0.0.1:3000/");
 			System.out.println("Conexion establecida con el servidor");
 		} catch (URISyntaxException e) {
 			System.out.println(e.getMessage());
