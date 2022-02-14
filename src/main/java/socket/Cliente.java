@@ -76,7 +76,7 @@ public class Cliente {
 		mSocket.emit(desconectado,nombre);
 		mSocket.disconnect();
 	}
-	
+	 
 }
 
 
