@@ -1,24 +1,27 @@
 package principal;
+
 import java.io.*;
 import java.net.*;
 
 import javax.swing.JOptionPane;
 
+import socket.Cliente;
+
 public class UsoPerro {
 
 	public static void main(String[] args) throws IOException {
 
-		
-		String[] opciones = { "Salir del menu", "Aniadir perro", "Ver los perros de cada duenio", "Ver todos los perros",
-				"Ordenar perros por su nombre", "Atacar a un perro" ,"Aparear a dos perros","Ver usuarios conectados"};
+		String[] opciones = { "Salir del menu", "Aniadir perro", "Ver los perros de cada duenio",
+				"Ver todos los perros", "Ordenar perros por su nombre", "Atacar a un perro", "Aparear a dos perros",
+				"Ver usuarios conectados", "Ir al CHAT" };
 
 		boolean menu = true;
 		Perrera perrera = new Perrera();
-		
+
 		while (menu) {
 			int opcion2 = -1;
-			String opcion = (String) JOptionPane.showInputDialog(null, "Que quieres hacer?", "MENU",
-					3, null, opciones, null);
+			String opcion = (String) JOptionPane.showInputDialog(null, "Que quieres hacer?", "MENU", 3, null, opciones,
+					null);
 
 			for (int i = 0; i < opciones.length; i++) // Consigo la posicion del array segun lo que has elegido en el
 														// menu
@@ -35,7 +38,6 @@ public class UsoPerro {
 			case 1:
 				perrera.anadePerro(perrera.anadePerroConsola());
 				break;
-
 
 			case 2: // Muestra los perros del duenio elegido
 				perrera.buscaDueno();
@@ -54,19 +56,31 @@ public class UsoPerro {
 				if (!perrera.estaVacia())
 					perrera.atacaPerro();
 				break;
-				
+
 			case 6:
 				perrera.anadePerro(perrera.procrearPerro());
 				break;
-				
+
 			case 7:
 				perrera.usuariosConectados();
-			
-			default :
+
+			case 8:
+				System.out.println("Bienvenido al chat");
+				Cliente.cierrachat = false;
+				Cliente.enviaMensaje(Cliente.chat,Cliente.nombre);
+				while (!Cliente.cierrachat) {
+					System.out.println();
+				}
+				System.out.println("Has salido del chat");
+				break;
+
+			default:
+				break;
+
 			}
+			System.out.println("Adios");
 		}
 
 	}
-
 
 }
