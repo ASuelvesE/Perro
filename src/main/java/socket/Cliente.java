@@ -88,6 +88,7 @@ public class Cliente {
 		});
 
 	}
+	
 
 	/////////////////////////////// AQUI DEBAJO LO QUE ENVIAMOS AL
 	/////////////////////////////// SERVIDOR/////////////////////////////
@@ -121,8 +122,122 @@ public class Cliente {
 		else {
 			mSocket.emit(eventoChat, mensaje,usuario);
 		}
-
-
 	}
+
+
+	
+	///////////////////////////////////////////// GETTERS Y SETTERS /////////////////////////////////////
+	
+	public String getEvento() {
+		return evento;
+	}
+
+
+	public void setEvento(String evento) {
+		this.evento = evento;
+	}
+
+
+	public String getConectado() {
+		return conectado;
+	}
+
+
+	public void setConectado(String conectado) {
+		this.conectado = conectado;
+	}
+
+
+	public String getDesconectado() {
+		return desconectado;
+	}
+
+
+	public void setDesconectado(String desconectado) {
+		this.desconectado = desconectado;
+	}
+
+
+	public String getUsuariosConectados() {
+		return usuariosConectados;
+	}
+
+
+	public void setUsuariosConectados(String usuariosConectados) {
+		this.usuariosConectados = usuariosConectados;
+	}
+
+
+	public static String getNombre() {
+		return nombre;
+	}
+
+
+	public static void setNombre(String nombre) {
+		Cliente.nombre = nombre;
+	}
+
+
+	public String getNuevoPerro() {
+		return nuevoPerro;
+	}
+
+
+	public void setNuevoPerro(String nuevoPerro) {
+		this.nuevoPerro = nuevoPerro;
+	}
+
+
+	public static String getEventoChat() {
+		return eventoChat;
+	}
+
+
+	public static void setEventoChat(String eventoChat) {
+		Cliente.eventoChat = eventoChat;
+	}
+
+
+	public static String getMensaje() {
+		return mensaje;
+	}
+
+
+	public static void setMensaje(String mensaje) {
+		Cliente.mensaje = mensaje;
+	}
+
+
+	public static String getChat() {
+		return chat;
+	}
+
+
+	public static void setChat(String chat) {
+		Cliente.chat = chat;
+	}
+
+
+	public static boolean isCierrachat() {
+		return cierrachat;
+	}
+
+
+	public static void setCierrachat(boolean cierrachat) {
+		Cliente.cierrachat = cierrachat;
+	}
+
+
+	public static io.socket.client.Socket getmSocket() {
+		return mSocket;
+	}
+
+
+	public static void setmSocket(io.socket.client.Socket mSocket) {
+		Cliente.mSocket = mSocket;
+	}
+
+
+
 
 }

@@ -18,6 +18,8 @@ public class UsoPerro {
 		boolean menu = true;
 		Perrera perrera = new Perrera();
 
+
+		
 		while (menu) {
 			int opcion2 = -1;
 			String opcion = (String) JOptionPane.showInputDialog(null, "Que quieres hacer?", "MENU", 3, null, opciones,
@@ -63,6 +65,7 @@ public class UsoPerro {
 
 			case 7:
 				perrera.usuariosConectados();
+				break;
 
 			case 8:
 				System.out.println("Bienvenido al chat");
