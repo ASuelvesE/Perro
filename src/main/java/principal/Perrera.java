@@ -152,6 +152,7 @@ public class Perrera {
 		String color = colorTipo.getPanel();
 
 		Perro perroNuevo = new Perro(nombrePeText.getText(), dueno, Integer.parseInt(edadText.getText()), color);
+		nuevoCliente.perroAniadido(perroNuevo.getNombre());
 		return perroNuevo;
 
 	}

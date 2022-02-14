@@ -17,6 +17,7 @@ public class Cliente {
 		private String desconectado = "usuario desconectado";
 		private String usuariosConectados = "usuarios conectados";
 		private String nombre;
+		private String nuevoPerro = "nuevo perro";
 	    private static io.socket.client.Socket mSocket;
 	    
 	public Cliente() {
@@ -48,6 +49,12 @@ public class Cliente {
 	        }
 	    });
 	    
+	    mSocket.on(nuevoPerro, new Emitter.Listener() { //Esperamos si recibimos un evento
+	        public void call(Object... args) {
+				JOptionPane.showMessageDialog(null,"SERVIDOR:\n"+ args[1] +" Ha creado un nuevo perro llamado: \n" + args[0] , "MENSAJE DEL SERVIDOR:",JOptionPane.INFORMATION_MESSAGE, Perrera.devuelveIcono()); 
+	        }
+	    });
+	    
 	    mSocket.on(usuariosConectados, new Emitter.Listener() { //Esperamos si recibimos un evento
 	        public void call(Object... args) {
 	        	String usuarios = "";
@@ -75,6 +82,9 @@ public class Cliente {
 	public void desconectarUsuario() {
 		mSocket.emit(desconectado,nombre);
 		mSocket.disconnect();
+	}
+	public void perroAniadido(String perro) {
+		mSocket.emit(nuevoPerro, perro,nombre);
 	}
 	 
 }
