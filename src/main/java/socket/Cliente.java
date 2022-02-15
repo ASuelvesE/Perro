@@ -18,10 +18,7 @@ public class Cliente {
 	private String usuariosConectados = "usuarios conectados";
 	public static String nombre;
 	private String nuevoPerro = "nuevo perro";
-	private static String eventoChat = "evento chat";
-	private static String mensaje;
-	public static String chat = "";
-	public static boolean cierrachat = false;
+
 	private static io.socket.client.Socket mSocket;
 
 	public Cliente() {
@@ -30,8 +27,8 @@ public class Cliente {
 		/////////////////////////////// SERVIDOR/////////////////////////////
 
 		try {
-	        mSocket = IO.socket("https://servidorclaseperro.herokuapp.com/");
-//			mSocket = IO.socket("http://127.0.0.1:3000/");
+//	        mSocket = IO.socket("https://servidorclaseperro.herokuapp.com/");
+			mSocket = IO.socket("http://127.0.0.1:3000/");
 			System.out.println("Conexion establecida con el servidor");
 		} catch (URISyntaxException e) {
 			System.out.println(e.getMessage());
@@ -64,16 +61,7 @@ public class Cliente {
 			}
 		});
 
-		mSocket.on(eventoChat, new Emitter.Listener() { // Esperamos el mensaje de chat desde el servidor
-			public void call(Object... args) {
-//				for (Object mensaje : args) {
-//					chat += (String) mensaje + "\n";
-//				}
-				chat += args[1] + " : " + (String)args[0] + "\n";
-				enviaMensaje(chat,(String)args[1]);
 
-			}
-		});
 
 		mSocket.on(usuariosConectados, new Emitter.Listener() { // Esperamos los usuarios conectados desde el servidor
 			public void call(Object... args) {
@@ -102,27 +90,19 @@ public class Cliente {
 	}
 
 	public void devuelveUsuarios() {
-		mSocket.emit(usuariosConectados, usuariosConectados);
+		mSocket.emit(usuariosConectados);
 	}  
 
-	public void desconectarUsuario() {
-		mSocket.emit(desconectado, nombre);
-		mSocket.disconnect();
-	}
+//	public void desconectarUsuario() {
+//		mSocket.emit(desconectado, nombre);
+//		mSocket.disconnect();
+//	}
 
 	public void perroAniadido(String perro) {
 		mSocket.emit(nuevoPerro, perro, nombre);
 	}
 
-	public static void enviaMensaje(String nuevomensaje,String usuario) {
-		mensaje = JOptionPane.showInputDialog(null,"Para salir escribe: 'ADIOS' \n CHAT: \n"  + nuevomensaje, "CHAT : \n", 1);
-		if (mensaje.equalsIgnoreCase("ADIOS")) {
-			cierrachat = true;
-		}
-		else {
-			mSocket.emit(eventoChat, mensaje,usuario);
-		}
-	}
+
 
 
 	
@@ -186,47 +166,6 @@ public class Cliente {
 	public void setNuevoPerro(String nuevoPerro) {
 		this.nuevoPerro = nuevoPerro;
 	}
-
-
-	public static String getEventoChat() {
-		return eventoChat;
-	}
-
-
-	public static void setEventoChat(String eventoChat) {
-		Cliente.eventoChat = eventoChat;
-	}
-
-
-	public static String getMensaje() {
-		return mensaje;
-	}
-
-
-	public static void setMensaje(String mensaje) {
-		Cliente.mensaje = mensaje;
-	}
-
-
-	public static String getChat() {
-		return chat;
-	}
-
-
-	public static void setChat(String chat) {
-		Cliente.chat = chat;
-	}
-
-
-	public static boolean isCierrachat() {
-		return cierrachat;
-	}
-
-
-	public static void setCierrachat(boolean cierrachat) {
-		Cliente.cierrachat = cierrachat;
-	}
-
 
 	public static io.socket.client.Socket getmSocket() {
 		return mSocket;

@@ -5,21 +5,26 @@ import java.net.*;
 
 import javax.swing.JOptionPane;
 
+import chat.Chat;
 import socket.Cliente;
 
 public class UsoPerro {
 
+	static boolean menu = true;
+
+	static String[] opciones = { "Salir del menu", "Aniadir perro", "Ver los perros de cada duenio", "Ver todos los perros",
+			"Ordenar perros por su nombre", "Atacar a un perro", "Aparear a dos perros", "Ver usuarios conectados",
+			"Ir al CHAT" };
+	
+
 	public static void main(String[] args) throws IOException {
-
-		String[] opciones = { "Salir del menu", "Aniadir perro", "Ver los perros de cada duenio",
-				"Ver todos los perros", "Ordenar perros por su nombre", "Atacar a un perro", "Aparear a dos perros",
-				"Ver usuarios conectados", "Ir al CHAT" };
-
-		boolean menu = true;
-		Perrera perrera = new Perrera();
-
-
 		
+		iniciaMenu();
+
+	}
+
+	public static void iniciaMenu() {
+		Perrera perrera = new Perrera();
 		while (menu) {
 			int opcion2 = -1;
 			String opcion = (String) JOptionPane.showInputDialog(null, "Que quieres hacer?", "MENU", 3, null, opciones,
@@ -34,7 +39,7 @@ public class UsoPerro {
 
 			case 0: // Sale del menu
 				menu = false;
-				perrera.desconectaUsuario();
+//				perrera.desconectaUsuario();
 				break;
 
 			case 1:
@@ -69,12 +74,8 @@ public class UsoPerro {
 
 			case 8:
 				System.out.println("Bienvenido al chat");
-				Cliente.cierrachat = false;
-				Cliente.enviaMensaje(Cliente.chat,Cliente.nombre);
-				while (!Cliente.cierrachat) {
-					System.out.println();
-				}
-				System.out.println("Has salido del chat");
+				Chat michat = new Chat();
+
 				break;
 
 			default:
@@ -83,7 +84,5 @@ public class UsoPerro {
 			}
 			System.out.println("Adios");
 		}
-
 	}
-
 }
