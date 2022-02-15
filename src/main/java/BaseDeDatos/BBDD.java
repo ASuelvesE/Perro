@@ -13,7 +13,9 @@ public class BBDD {
 	
 	public BBDD() {
 
-		String URL = "jdbc:mysql://80.34.34.150:33070/perrera";
+		//String URL = "jdbc:mysql://80.34.34.150:33070/perrera";
+		String URL = "jdbc:mysql://192.168.8.25:3306/perrera";
+		
 		try {
 			conexion = DriverManager.getConnection(URL,"admin","admin");  //
 			System.out.println("Conectado a la BDDD exitosamente");
