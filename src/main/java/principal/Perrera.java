@@ -115,11 +115,11 @@ public class Perrera {
 			JOptionPane.showMessageDialog(null, alerta, "!!!!!", JOptionPane.INFORMATION_MESSAGE, devuelveIcono());
 			perreras.remove(mordido);
 			miconexion.eliminaPerro(mordido);
-			nuevoCliente.enviaMensaje(alerta);
+			nuevoCliente.enviaMordisco(alerta);
 		} else {
 			String alerta = atacante.getNombre() + " ha mordido a " + mordido.getNombre() + " y est� herido !!!";
 			JOptionPane.showMessageDialog(null, alerta, "!!!!!", JOptionPane.INFORMATION_MESSAGE, devuelveIcono());
-			nuevoCliente.enviaMensaje(alerta);
+			nuevoCliente.enviaMordisco(alerta);
 		}
 
 	}
@@ -188,7 +188,7 @@ public class Perrera {
 	public void usuariosConectados() {
 		nuevoCliente.devuelveUsuarios();
 	}
-	public void desconectaUsuario() {
-		nuevoCliente.desconectarUsuario();
-	}
+//	public void desconectaUsuario() {
+//		nuevoCliente.desconectarUsuario();
+//	}
 }

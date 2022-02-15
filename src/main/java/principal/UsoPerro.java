@@ -1,24 +1,34 @@
 package principal;
+
 import java.io.*;
 import java.net.*;
 
 import javax.swing.JOptionPane;
 
+import chat.Chat;
+import socket.Cliente;
+
 public class UsoPerro {
 
+	static boolean menu = true;
+
+	static String[] opciones = { "Salir del menu", "Aniadir perro", "Ver los perros de cada duenio", "Ver todos los perros",
+			"Ordenar perros por su nombre", "Atacar a un perro", "Aparear a dos perros", "Ver usuarios conectados",
+			"Ir al CHAT" };
+	
+
 	public static void main(String[] args) throws IOException {
-
 		
-		String[] opciones = { "Salir del menu", "Aniadir perro", "Ver los perros de cada duenio", "Ver todos los perros",
-				"Ordenar perros por su nombre", "Atacar a un perro" ,"Aparear a dos perros","Ver usuarios conectados"};
+		iniciaMenu();
 
-		boolean menu = true;
+	}
+
+	public static void iniciaMenu() {
 		Perrera perrera = new Perrera();
-		
 		while (menu) {
 			int opcion2 = -1;
-			String opcion = (String) JOptionPane.showInputDialog(null, "Que quieres hacer?", "MENU",
-					3, null, opciones, null);
+			String opcion = (String) JOptionPane.showInputDialog(null, "Que quieres hacer?", "MENU", 3, null, opciones,
+					null);
 
 			for (int i = 0; i < opciones.length; i++) // Consigo la posicion del array segun lo que has elegido en el
 														// menu
@@ -29,13 +39,12 @@ public class UsoPerro {
 
 			case 0: // Sale del menu
 				menu = false;
-				perrera.desconectaUsuario();
+//				perrera.desconectaUsuario();
 				break;
 
 			case 1:
 				perrera.anadePerro(perrera.anadePerroConsola());
 				break;
-
 
 			case 2: // Muestra los perros del duenio elegido
 				perrera.buscaDueno();
@@ -54,19 +63,26 @@ public class UsoPerro {
 				if (!perrera.estaVacia())
 					perrera.atacaPerro();
 				break;
-				
+
 			case 6:
 				perrera.anadePerro(perrera.procrearPerro());
 				break;
-				
+
 			case 7:
 				perrera.usuariosConectados();
-			
-			default :
+				break;
+
+			case 8:
+				System.out.println("Bienvenido al chat");
+				Chat michat = new Chat();
+
+				break;
+
+			default:
+				break;
+
 			}
+			System.out.println("Adios");
 		}
-
 	}
-
-
 }
